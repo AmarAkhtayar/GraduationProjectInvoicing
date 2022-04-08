@@ -1,0 +1,85 @@
+@import "./src/assets/scss/variables";
+mat-toolbar {
+  background: #B4461E;
+  color: white;
+  img{
+    vertical-align: middle;
+    border-style: none;
+    width: 88px;
+    height: auto;
+  }
+
+}
+
+
+mat-sidenav {
+  margin: 0px;
+  width: 200px;
+  border-right: none;
+  background: $second-color;
+  color: white;
+  padding: 16px;
+  text-align: center;
+
+}
+/*
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  color: lightgray;
+}*/
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  background: $second-color;
+  border: none;
+  color: white;
+  padding: 3px;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+.menu-button:hover{
+  color: #7b6e78;
+}
+mat-icon {
+  margin-right: 8px;
+}
+
+.avatar {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}

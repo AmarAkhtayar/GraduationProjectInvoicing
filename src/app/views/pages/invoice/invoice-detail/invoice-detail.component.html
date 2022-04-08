@@ -1,0 +1,93 @@
+<div class="form-wrapper">
+  <h2 class="grid-margin page-title">Algemeene Informatie
+  </h2>
+  <!-- <div class="row">
+   
+    <div class="btn-group btn-breadcrumb width-100">
+      <a href="#" class="btn btn-danger">
+        <span class="material-icons">
+          home
+          </span>
+      </a>
+      <a href="#" class="btn btn-danger">Snippets</a>
+      <a href="#" class="btn btn-danger">Breadcrumbs</a>
+      <a href="#" class="btn btn-danger">Danger</a>
+    </div>
+  </div> -->
+
+ <div class="row">
+   <div class= "col-sm-12 col-md-6">
+     <h6>Opdrachtgever: {{invoiceDetail?.clientName}}</h6>
+   
+   </div>
+
+   <div class= "col-sm-12 col-md-6">
+     <h6>Opdrachtnemer: {{invoiceDetail?.supplierName}}</h6>
+     <h6>Project: {{invoiceDetail?.projectDescription}}</h6>
+    
+   </div>
+
+ </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <table class="table  table-striped margin-top-50">
+        <thead class="dark">
+          <tr>
+            <th scope="col" class="text-center">Nummer</th>
+            <th scope="col" class="text-center">{{invoiceDetail?.number}}</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="text-center">Factuurdatum</td>
+            <td class="text-center">{{invoiceDetail?.date | date: 'MM-dd-yyyy'}}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Bedrag</td>
+            <td class="text-center">{{invoiceDetail?.totalExclusiveVatWithRaise.toFixed(2)}}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Bedrag (incl. btw)</td>
+            <td class="text-center">{{invoiceDetail?.totalInclusiveVatWithRaise.toFixed(2)}}</td>
+          </tr>
+        
+        </tbody>
+      </table>
+
+      <table *ngIf= "invoiceDetail?.invoiceLines.length >0" class="table  table-striped margin-top-100">
+        <thead class="dark">
+          <tr>
+            <th scope="col" class="text-center">Omschrijving</th>
+            <th scope="col" class="text-center">Datum</th>
+            <th scope="col" class="text-center">Aantal</th>
+            <th scope="col" class="text-center">Assignment Rate Datum</th>
+            <th scope="col" class="text-center">Vat</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let invoiceLine of invoiceDetail?.invoiceLines">
+            <td class="text-center">{{invoiceLine?.description}}</td>
+            <td class="text-center">{{invoiceLine?.date | date: 'MM-dd-yyyy' }}</td>
+            <td class="text-center">{{invoiceLine?.amount * invoiceLine?.assignmentRate?.rate}}</td>
+            <td class="text-center">{{invoiceLine?.assignmentRate?.startDate | date: 'MM-dd-yyyy'}}  - {{invoiceLine?.assignmentRate?.endDate | date: 'MM-dd-yyyy'}}</td>
+            <td class="text-center">{{invoiceLine?.vat?.description}}</td>
+          </tr>
+        
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+
+      <button class="btn btn-success width-40 margin-top-50" (click)="downloadInvoice()">
+        Download
+      </button>
+
+
+    </div>
+  </div>
+</div>

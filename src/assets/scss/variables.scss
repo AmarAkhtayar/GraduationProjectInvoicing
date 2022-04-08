@@ -1,0 +1,164 @@
+$black: #000000;
+$white: #FFFFFF;
+$main-color: #B4461E;
+$second-color: #3d405b;
+$text-color: #404040;
+$paragraph-color :  #737373;
+$page-txt-color: #262626;
+$off-white: #c2d2d2;
+$off-white2: #02504e;
+$off-white3: #fdfdfd;
+$off-white4 :#616161;
+$thired-color: #4f8a0f;
+$hover-color: #f3fbe9;
+$low-gray: #999999;
+$low-black :#999999;
+$inner-page-title: #1c1c1c;
+$inner-page-bg:#f6f6f6;
+
+$colors: (
+  black:$black,
+  white: $white,
+  main-color: $main-color,
+  text-color: $text-color,
+  second-color: $second-color,
+  off-white: $off-white,
+  off-white2: $off-white2,
+  off-white3: $off-white3,
+  off-white4: $off-white4,
+  paragraph-color: $paragraph-color,
+  thired-color: $thired-color,
+  hover-color:$hover-color,
+  low-gray : $low-gray,
+  low-black: $low-black,
+  inner-page-title: $inner-page-title,
+  inner-page-bg: $inner-page-bg
+);
+
+$font-size-base: 16;
+
+@mixin colors-bg-text {
+  @for $i from 1 through length($colors) {
+    $key: nth($colors, $i);
+    $value: nth($key, 2);
+    .bg-color-#{"" + nth($key, 1)} {
+      background-color: $value !important;
+    }
+    .bg-color-hover-#{"" + nth($key, 1)} {
+      &:hover, &.nav-link.active {
+        background-color: $value !important;
+      }
+    }
+    .bg-color-hover-#{"" + nth($key, 1)}-imp {
+      &:before{
+        content: "";
+        width: 0;
+        height: 100%;
+        position: absolute;
+        background-color: $value !important;
+        transition: all .3s ease-in-out;
+      }
+      &:hover , &.nav-link.active ,&.nav-link[aria-expanded="true"]{
+        &:before{
+          width: 100%;
+        }
+      }
+    }
+    .text-color-#{"" + nth($key, 1)} {
+      color: $value !important;
+    }
+    .bg-color-#{"" + nth($key, 1)}-imp {
+      background-color: $value !important;
+    }
+    .text-color-#{"" + nth($key, 1)}-imp {
+      color: $value !important;
+    }
+
+    .#{"" + nth($key, 1)}-checkbox.mat-accent {
+      .mat-checkbox-frame {
+        border-color: $value !important;
+      }
+
+      &.mat-checkbox-checked {
+        .mat-checkbox-background {
+          background-color: $value !important;
+        }
+      }
+
+    }
+
+  }
+}
+
+@include colors-bg-text;
+
+
+@mixin margins {
+  @for $i from 1 through 150 {
+    .m-left-#{$i} {
+      margin-left: #{$i/$font-size-base}rem !important;
+      [dir= ltr] &  {
+        margin-right: #{$i/$font-size-base}rem !important;
+        margin-left: 0 !important;
+      }
+    }
+
+    .m-right-#{$i} {
+      margin-right: #{$i/$font-size-base}rem !important;
+      [dir= ltr] &  {
+        margin-left: #{$i/$font-size-base}rem !important;
+        margin-right: 0 !important;
+      }
+    }
+
+    .m-bottom-#{$i} {
+      margin-bottom: #{$i/$font-size-base}rem !important;
+    }
+    .m-top-#{$i} {
+      margin-top: #{$i/$font-size-base}rem !important;
+    }
+  }
+}
+
+@include margins;
+
+
+@mixin paddings {
+  @for $i from 1 through 150 {
+    .p-left-#{$i} {
+
+      [dir=rtl] & {
+        padding-left: #{$i/$font-size-base}rem !important;
+        padding-right: 0 !important;
+      }
+      [dir= ltr] & {
+        padding-right: #{$i/$font-size-base}rem !important;
+        padding-left: 0 !important;
+      }
+    }
+
+    .p-right-#{$i} {
+
+      [dir=rtl] & {
+        padding-right: #{$i/$font-size-base}rem !important;
+        padding-left:0 !important
+      }
+      [dir= rtl] & {
+        padding-left: #{$i/$font-size-base}rem !important;
+        padding-right:0 !important
+      }
+    }
+
+    .p-bottom-#{$i} {
+      padding-bottom: #{$i/$font-size-base}rem !important;
+    }
+    .p-top-#{$i} {
+      padding-top: #{$i/$font-size-base}rem !important;
+    }
+
+  }
+}
+
+@include paddings;
+
+

@@ -1,0 +1,140 @@
+<div class="form-wrapper">
+  <div>
+    <div class="row d-flex">
+      <div class= "col-sm-12 col-md-6">
+        <h3 class="page-title">Recente gemaakte facturen</h3>
+      
+      </div>
+  
+        
+        
+          <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Zoeken.." #searchInput>
+            </div>
+          </div>
+      
+      </div>
+  <!-- <div class="row mt-5">
+    <div class="col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Zoeken.." #searchInput>
+      </div>
+    </div>
+  </div> -->
+   <div>
+   
+  <div class="row mt-5">
+    <div class="col-12 ">
+      <div style="overflow-x:auto;" class="d-flex justify-content-center text-center">
+
+        <div class="table-responsive">
+
+          <table class="table  table-striped">
+            <thead class="dark">
+              <tr>
+                <th></th>
+                <th>Factuurnummer</th>
+                <th>Factuurdatum</th>
+                <th>Opdrachtgever</th>
+                <th>Project</th>
+                <th>Bedrag</th>
+                <th>Bedrag(incl.BTW)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let invoice of invoices?.result | paginate: 
+              { itemsPerPage: pageSize,
+                 currentPage:currentPage,
+                  totalItems: invoices?.totalRecords };
+                    index as i" class="link-hover" >
+                <!-- <tr *ngFor="let invoice of invoices; index as i"> -->
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)">
+                  <i *ngIf="checkedInvoices.includes(invoice.key)" class="material-icons orange info-icon">
+                    done
+                  </i>
+              
+                </td>
+  
+                
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)">{{invoice.number}}</td>
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)">{{invoice.date | date: 'dd-MM-yyyy'}}</td>
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)">{{invoice.clientName}}</td>
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)" title="{{invoice.projectDescription}}">{{invoice.projectDescription.substr(0, 15) }}...</td>
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)">{{invoice.totalExclusiveVatWithRaise.toFixed(2)}}</td>
+                <td (click)="onInvoicesChange($event.target.checked,invoice.key,true)">{{invoice.totalInclusiveVatWithRaise.toFixed(2)}}</td>
+                <td>
+                  <!-- <a class="btn btn-warning orange-back " (click)="openInVoiceDetails(invoice.key)"> -->
+                  <i class="material-icons link-hover orange-hover" data-toggle="tooltip" title="Factuurgegevens bekijken!"(click)="openInVoiceDetails(invoice.key)">
+                    visibility
+                  </i>
+                  &nbsp;
+                  <i class="material-icons link-hover orange-hover"
+                    (click)="downloadInvoice(invoice.key,invoice.number)" data-toggle="tooltip" title="Factuur downloaden!">
+                    file_download
+
+                  </i>
+                  <!-- </a> -->
+                </td>
+              </tr>
+
+              <tr *ngIf="isLoading">
+                <td colspan="8">
+                  <img src="assets/images/loading.gif" class="img-responsive" width="60">
+                </td>
+              </tr>
+              
+              <tr *ngIf="invoices?.totalRecords ==0">
+                <td colspan="8" class="text-center">
+                  Geen invoice gevonden!
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+
+          <pagination-template class="custom-pagination" #p="paginationApi" (pageChange)="pageChange($event)">
+
+            <div (click)="p.previous()" class="pagination-previous" [class.disabled]="p.isFirstPage()">
+              <a (click)="p.previous()">
+                < </a>
+            </div>
+
+            <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+              <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                <span>{{ page.label }}</span>
+              </a>
+              <div *ngIf="p.getCurrent() === page.value">
+                <span>{{ page.label }}</span>
+              </div>
+            </div>
+
+            <div (click)="p.next()" class="pagination-next" [class.disabled]="p.isLastPage()">
+              <a (click)="p.next()"> > </a>
+            </div>
+
+          </pagination-template>
+        
+
+          <button type="button" *ngIf="checkedInvoices.length >0" 
+            (click)="downloadMultipleInvoice()"
+            class="btn btn-success btn-circle fixed-btn">
+            <i class="material-icons link-hover orange-hover">
+              file_download
+            </i>
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

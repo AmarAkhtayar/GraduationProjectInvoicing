@@ -1,0 +1,23 @@
+
+<div class="login-wrapper" *ngIf="!isLoggedIn()">
+  <div class="img-section">
+    <img src="../assets/images/invoice.jpg" alt="">
+  </div>
+ <div class="txt-section">
+   <p>
+     Sign in the invoicing system
+   </p>
+   <button type="button" class="btn btn-secondary m-5"
+           (click)="login()" >SIGN IN</button>
+ </div>
+</div>
+
+
+<div *ngIf="isLoggedIn()">
+  <div class="wrapper">
+    <app-side-menu></app-side-menu>
+  </div>
+
+  <tour-step-template></tour-step-template>
+</div>
+

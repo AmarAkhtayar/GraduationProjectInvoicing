@@ -1,0 +1,72 @@
+@import "./src/assets/scss/variables";
+.page-title{
+  margin-top: 20px;
+  margin-bottom: 48px;
+ color: $main-color;
+
+}
+.form-group{
+  margin-top: 12px;
+}
+table {
+  // width: auto !important;
+  .dark {
+    background-color: #1c1c1c !important;
+    color: #dcdcdc;
+  }
+  thead {
+
+    tr {
+      th {
+        font-weight: bold;
+        font-size: 16px;
+
+      }
+    }
+
+  }
+  tbody {
+    tr{
+      td {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+.input-wrapper {
+  margin: 20px 90px;
+  input {
+    border: 1px solid gray;
+    height: 40px;
+    width: 300px;
+    margin-right: 30px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  button {
+    border: 0;
+    background-color: $main-color;
+    height: 40px;
+    width: 80px;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  tbody {
+    display:block;
+    max-height:500px;
+    overflow-y:auto;
+  }
+  thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+  }
+  thead {
+    width: calc( 100% - 1em )
+  }
+  
+}
+

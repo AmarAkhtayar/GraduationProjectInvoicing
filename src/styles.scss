@@ -1,0 +1,365 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import '~font-awesome/css/font-awesome.css';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$invoice-system-primary: mat-palette($mat-indigo);
+$invoice-system-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$invoice-system-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$invoice-system-theme: mat-light-theme((
+  color: (
+    primary: $invoice-system-primary,
+    accent: $invoice-system-accent,
+    warn: $invoice-system-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($invoice-system-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import "./assets/scss/variables";
+@import "./assets/scss/general";
+
+html,
+body {
+  //  height: 100%;
+  overflow-x: hidden !important; }
+body { margin: 0;
+   font-family: ui-monospace;
+ }
+.custom-select,
+select{
+  max-width: 100% !important; 
+  width: 100% !important;
+}
+.link-hover{
+  cursor: pointer;
+}
+ng-select .ng-select-container {
+  color: #000;
+  background-color: #fff;
+  border-radius: 4px;
+  // line-height: 40px;
+  
+  
+  height: calc(1.5em+ 0.75rem+ 2px) !important;
+  // min-height: calc(1.5em+ 0.75rem+ 2px) !important;
+  // min-height: 41.5px !important;
+  padding: 0.375rem 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+
+  border: 1px solid #ccc;
+  // min-height: calc(2.25rem + 9px) !important;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.width-40{
+  width: 40%;
+}
+.width-100{
+  width: 100%;
+}
+.lightgrey-color{
+  color: lightgrey;
+}
+.orange-hover:hover{
+  color:  #B4461E;
+}
+.orange{
+  color:  #B4461E;
+}
+.orange-back{
+ background:  #B4461E;
+ color:#fff
+}
+.show-btn{
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  justify-content: center;
+  line-height: 40px;
+}
+input,
+.form-control{
+  height: 45px;
+  min-height: calc(1.5em+ 0.75rem+ 2px) !important;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  line-height: 0px !important;
+}
+.submitFormbtn{
+  width: 60% !important;
+}
+
+// .mat-drawer-content{
+//   overflow: auto !important;
+//   height: 100%;
+// }
+// .mat-drawer-inner-container{
+//   // overflow: hidden !important;
+//   height: 100%;
+// }
+.form-wrapper {
+  box-shadow: 0 -2px 5px 0 rgb(0,0,0,.2);
+  width: 90%;
+  margin: 20px auto;
+  padding: 30px;
+  .form-txt {
+    width: 20%;
+    flex-basis: 44%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    label {
+      margin: 0;
+    }
+  }
+  .form-select {
+    // width: 80%;
+    // flex-basis: 80%;
+    select {
+      width: 100%;
+      max-width: 100%;
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+    input {
+      width: 100%;
+      border: 1px solid #c5c4c4;
+      height: 40px;
+      padding: 15px;
+    }
+  }
+}
+
+
+.current {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+  margin-left: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  color: #b4461e !important;
+  border: none;
+  // background: #221e51;
+  // background: #ffb200;
+}
+.pageActive{
+  background: #000 !important;
+  text-align: center;
+  min-width: 37px;
+  line-height: 30px;
+  padding: 0 5px;
+  margin-left: 2px;
+  text-align: center;
+  border: none;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  color: #fff !important;
+}
+
+.custom-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //   justify-content: space-between;
+}
+
+.custom-pagination .disabled{
+  background: #cfd1de !important;
+} 
+.margin-top-50{
+  margin-top: 50px;
+}
+
+.margin-top-70{
+  margin-top: 70px;
+}
+.margin-top-100{
+  margin-top: 100px;
+}
+.custom-pagination {
+  div {
+    margin: 0 10px;
+    a {
+      // color: #000;
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}
+
+.fixed-btn{
+position: fixed;
+right: 70px;
+height: 55px;
+width: 60px;
+border-radius: 50%;
+bottom: 100px;
+}
+
+.pagination-previous,
+.prev button,
+.next button,
+.pagination-next {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 30px;
+  // height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  margin-right: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  border-radius: 2px;
+  cursor: default;
+  // color: #000 !important;
+  color: #fff !important;
+  border: 1px solid transparent;
+  background: #000 !important;
+  box-shadow: none;
+  cursor: pointer;
+  a {
+    color: #fff !important;
+    cursor: pointer;
+  }
+}
+
+.error-color{
+  color: #dc3545 !important;
+}
+
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+.btn-submit:hover ,
+.btn-submit:active ,
+.btn-submit:checked,
+.btn-submit{
+  background-color: #b4461e;
+  border-color: #b4461e;
+  color: #fff;
+}
+.btn-submit:focus, .btn-submit.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(243 89 64 / 25%);
+}
+/** Danger button **/
+.btn-breadcrumb .btn.btn-danger{
+  background: #3d405b !important;
+}
+.btn-breadcrumb .btn.btn-danger:not(:last-child):after {
+  border-left: 10px solid #3d405b;
+}
+.btn-breadcrumb .btn.btn-danger:not(:last-child):before {
+  border-left: 10px solid #B4461E;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):after {
+  border-left: 10px solid #3d405b;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):before {
+  border-left: 10px solid #B4461E;
+}
+
+
+.form-label{
+  color: #933817;
+    font-family: ui-monospace;
+    font-style: normal;
+    /* font-weight: 500; */
+    font-weight: bold;
+}
+
+@media (max-width: 576px) { 
+  h2, .h2 {
+    font-size: 1rem !important;
+}
+  .form-group ,
+  .form-select{
+   
+    // width: 100% !important;
+  }
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {  }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {  }

@@ -1,0 +1,32 @@
+@import "./src/assets/scss/variables";
+.page-title{
+  margin-top: 20px;
+  margin-bottom: 48px;
+ color: $main-color;
+
+}
+table {
+  // width: auto !important;
+  .dark {
+    background-color: #1c1c1c !important;
+    color: #dcdcdc;
+  }
+  thead {
+
+    tr {
+      th {
+        font-weight: bold;
+        font-size: 16px;
+
+      }
+    }
+
+  }
+  tbody {
+    tr{
+      td {
+        font-size: 14px;
+      }
+    }
+  }
+}

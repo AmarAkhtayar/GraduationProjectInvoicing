@@ -1,0 +1,115 @@
+<mat-toolbar>
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  <a class="logo m-left-60" href="#"> <img src="assets/images/logo.png" alt="logo"></a>
+</mat-toolbar>
+
+<mat-sidenav-container id="scrolled">
+
+  <mat-sidenav #sidenav="matSidenav"  class="mat-elevation-z8">
+    <img class="avatar mat-elevation-z8" src="./assets/images/MyPhoto.jpeg"/>
+
+    <h4 class="name">{{user.name}}</h4>
+    <p class="designation">{{user.email}}</p>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/invoice">
+      <mat-icon>add_circle</mat-icon>
+      <span>Nieuwe factuur</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/contact">
+      <mat-icon>help</mat-icon>
+      <span>Contact</span>
+    </button>
+    <button mat-button class="menu-button" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="container">
+    <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+<!---
+
+
+
+
+
+--->
+
+
+<!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-color-main-color ">
+
+  <div class="dropdown">
+  <a class="navbar-brand m-right-30" href="#"> <img src="assets/images/logo.png" alt="logo"></a>
+
+  <button class="navbar-toggler" type="button"
+          (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse"
+       [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'invoice'">Invoice</a>
+      </li>
+
+      <li class="nav-item">
+        <a  [routerLink]="'home'">Home</a>
+      </li>
+    </ul>
+  </div>
+  </div>-->
+<!--
+<div class="d-none d-lg-inline-block">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'home'">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'invoice'">Invoice</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <button class="d-inline-block d-lg-none" >
+    <span class="material-icons-outlined">menu</span>
+  </button>
+
+
+
+
+</nav>
+--->

@@ -1,0 +1,231 @@
+<div class="form-wrapper">
+
+  <h2 class="grid-margin page-title">
+
+    {{title}}
+  </h2>
+
+  <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+    <div class="form-content">
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 col-sm-12">
+
+
+          <div class="row form-group">
+            <div class="col-md-4 col-xs-12 ">
+              <label for="disabledTextInput" class="form-label ">Plaatsing</label>
+
+              <span class="required" aria-required="true">*</span>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <ng-select class="custom" [items]="placements" bindLabel="fullElement"
+                placeholder="selecteer een plaatsing" formControlName="plaatsing" [searchFn]="search" #selectID>
+
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  {{item.number}} {{item.supplierExecutiveFullName}} ({{item.startDate }} /
+                  {{
+                  item.endDate
+                  }})
+                </ng-template>
+              </ng-select>
+
+              <small *ngIf="formGroup.get('plaatsing').touched && formGroup.get('plaatsing').errors?.required"
+                class="text-danger d-block">
+                Dit veld is verplicht!
+              </small>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-4 col-xs-12 ">
+              <label for="disabledTextInput" class="form-label ">Projecten</label>
+              <span class="required" aria-required="true">*</span>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <select class="custom-select form-control" formControlName="projects">
+                <option [value]="null" selected disabled>Selecteer een project</option>
+                <option *ngFor="let project of projects" value="{{project.key}}">
+                  {{project.description}}
+                </option>
+              </select>
+
+              <small *ngIf="formGroup.get('projects').touched && formGroup.get('projects').errors?.required"
+                class="text-danger d-block">Dit veld is verplicht!</small>
+            </div>
+          </div>
+
+
+          <div class="row form-group">
+            <div class="col-md-4 col-xs-12 ">
+              <label for="disabledTextInput" class="form-label ">Factuurnummer</label>
+              <span class="required" aria-required="true">*</span>
+              &nbsp;
+              <i title="let op: Dit nummer is het nummer dat u gebruikt voor uw administratie"
+                class="material-icons lightgrey-color link-hover orange-hover info-icon">
+                info
+              </i>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <input class="form-control" type="text"  formControlName="factuurnummer" (keypress)="onlyNumberKey($event)"
+                placeholder="vul het factuurnummer in">
+              <small *ngIf="formGroup.get('factuurnummer').touched && formGroup.get('factuurnummer').errors?.required"
+                class="text-danger d-block">Dit veld is verplicht!</small>
+                <small *ngIf="dublicatedInvoiceNumber"
+                class="text-danger d-block">{{dublicatedInvoiceNumber}}!</small>
+            </div>
+            <small *ngIf="formGroup.get('factuurnummer').touched && formGroup.get('factuurnummer').errors?.maxlength"
+                class="text-danger d-block">Maximum lengte is 50!</small>
+          </div>
+
+
+          <div class="row form-group">
+            <div class=" col-md-4 col-xs-12 ">
+              <label for="disabledTextInput" class="form-label ">Versnelde Betaling</label>
+              <span class="required" aria-required="true">*</span>
+            </div>
+
+            <!-- <select class="custom-select form-control" formControlName="paymentDiscountType">
+                <option [value]="null" selected disabled>Normale betalingstermijn</option>
+                <option value="1">1 werkdag</option>
+                <option value="2">7 werkdag</option>
+                <option value="3">14 werkdag</option>
+
+              </select> -->
+          </div>
+
+          <div class="row d-flex">
+
+            <div class="col-md-4 col-sm-12 days-card-container">
+              <div class="days-card" (click)="onNumberOfDaysChange(1)"
+                [ngClass]="{'days-card-active' : numberOfDays ==1}">
+                <h5>1 werkdag</h5>
+                <h4>voor 3.5 % van de factuur(excl.btw)</h4>
+              </div>
+            </div>
+
+         
+            <div class="col-md-4 col-sm-12 days-card-container">
+              <div class="days-card" (click)="onNumberOfDaysChange(2)"
+                [ngClass]="{'days-card-active' : numberOfDays ==2}">
+                <h5>7 werkdag</h5>
+                <h4>voor 2 % van de factuur(excl.btw)</h4>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12 days-card-container">
+              <div class="days-card" (click)="onNumberOfDaysChange(3)"
+                [ngClass]="{'days-card-active' : numberOfDays ==3}">
+                <h6>14 werkdag</h6>
+              </div>
+            </div>
+            <div class="clearFix"></div>
+            <small *ngIf="noNumberOfDays" class="text-danger d-block">
+              Dit veld is verplicht!
+            </small>
+            <!-- <small
+            *ngIf="formGroup.get('paymentDiscountType').touched && formGroup.get('paymentDiscountType').errors?.required"
+            class="text-danger d-block">
+            Dit veld is verplicht!
+          </small> -->
+          </div>
+          <div class="clearFix"></div>
+
+          <div class="row form-group">
+            <div class="col-md-4 col-xs-12">
+              <label for="disabledTextInput" class="form-label">Declaraties
+
+                <span class="required" aria-required="true">*</span>
+              </label>
+              &nbsp;
+              <i title="Hier u kunt op een tabelrij klikken om een declaratie te selecteren"
+                class="material-icons link-hover orange-hover lightgrey-color info-icon">
+                info
+              </i>
+
+
+            </div>
+            <div class="col-md-8 col-xs-12">
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="table-responsive">
+
+              <table class="table  table-hover margin-top-50">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center"></th>
+                    <th scope="col" class="text-center">Nummer</th>
+                    <th scope="col" class="text-center">Omschrijving</th>
+                    <th scope="col" class="text-center">Periode</th>
+                    <th scope="col" class="text-center">Uitvoerende</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let declaration of declarations" class="link-hover"
+                    (click)="onDeclarationsChange($event.target.checked,declaration.key,true)">
+
+                    <td class="text-center">
+
+                      <i *ngIf="checkedDeclarations.includes(declaration.key)" class="material-icons orange info-icon">
+                        done
+                      </i>
+                  
+                    </td>
+                    <td class="text-center">{{declaration.number}}</td>
+                    <td class="text-center">{{declaration.description}}</td>
+                    <td class="text-center">
+                      {{declaration.startPeriod | date: 'MM-dd-yyyy'}}/ {{declaration.endPeriod |
+                      date: 'MM-dd-yyyy'}}
+                    </td>
+                    <td class="text-center">{{declaration.assignmentPlacementSupplierExecutiveFullName}}</td>
+
+                  </tr>
+
+
+                  <tr *ngIf="loaddeclarations && declarations.length ==0">
+                    <td colspan="5" class="text-center">Geen declaration om aan te tonen!!</td>
+                  </tr>
+
+                  <tr *ngIf="noCheckedDeclarations">
+                    <td colspan="5" class="text-center error-color">Select minimaal een declaration!!</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row form-group text-center">
+            <div class="col-md-12 col-xs-12 text-center margin-top-50">
+
+              <button *ngIf="!isFormSubmitted" type="submit" class="btn btn-submit  submitFormbtn">
+                factuur indienen
+              </button>
+              <div *ngIf="invoiceCreated" class="alert alert-success" role="alert">
+              Factuur is succesvol aangemaakt!
+              </div>
+              <button *ngIf="isFormSubmitted" type="button" class="btn btn-submit disabled submitFormbtn">
+                ...
+              </button>
+
+            </div>
+
+
+            <!-- <button type="button" class="btn btn-success btn-circle fixed-btn">
+              submit
+            </button> -->
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>
